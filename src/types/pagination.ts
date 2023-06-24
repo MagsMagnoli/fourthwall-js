@@ -1,12 +1,12 @@
-export type Page = {
+export interface Page {
   pageNumber: number;
   pageSize: number;
   elementsSize: number;
   elementsTotal: number;
   totalPages: number;
   hasNextPage: boolean;
-};
+}
 
-export type Pagination = {
+export interface Pagination {
   page: Page;
-};
+}

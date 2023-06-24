@@ -1,3 +1,5 @@
+import { Pagination } from "./pagination";
+
 export interface Supporter {
   email: string;
   username: string;
@@ -10,7 +12,7 @@ export interface Value {
 }
 
 export interface GiveawayBreakdown {
-  type: string;
+  interface: string;
   id: string;
   createdAt: string;
   supporter: Supporter;
@@ -32,16 +34,6 @@ export interface GiveawayResult {
   giveawayBreakdown: GiveawayBreakdown[];
 }
 
-export interface Page {
-  pageNumber: number;
-  pageSize: number;
-  elementsSize: number;
-  elementsTotal: number;
-  totalPages: number;
-  hasNextPage: boolean;
-}
-
-export interface GiveawayContributionResponse {
+export interface GiveawayContributionResponse extends Pagination {
   result: GiveawayResult[];
-  page: Page;
 }

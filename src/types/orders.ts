@@ -1,11 +1,11 @@
 import { Pagination } from "./pagination";
 
-export type OrdersResponse = Pagination & {
+export interface OrdersResponse extends Pagination {
   orders: Order[];
-};
+}
 
 export interface Order {
-  type: string;
+  interface: string;
   profit: Profit;
   id: string;
   friendlyId: string;
@@ -58,7 +58,7 @@ export interface Offer {
 }
 
 export interface Offer2 {
-  type: string;
+  interface: string;
   id: string;
   shopId: string;
   customizationId?: string;
@@ -71,7 +71,7 @@ export interface Offer2 {
   slug: string;
   description: string;
   images: Image[];
-  variantTypes: VariantType[];
+  variantinterfaces: Variantinterface[];
   fulfillmentService: string;
   fulfillingService: string;
   manufacturingService: string;
@@ -89,7 +89,7 @@ export interface Offer2 {
   variationColorTitle: string;
   variationCustomTitle: string;
   variationSizeTitle: string;
-  variationTypes: string[];
+  variationinterfaces: string[];
   variationEnabled: boolean;
   sizeGuideUrl: string;
   state: State;
@@ -115,12 +115,12 @@ export interface Tags {
 }
 
 export interface Tag {
-  type: string;
+  interface: string;
   name: string;
 }
 
-export interface VariantType {
-  type: string;
+export interface Variantinterface {
+  interface: string;
   title: string;
   options: Option[];
   variesBy: VariesBy;
@@ -157,11 +157,11 @@ export interface Shipment {
 }
 
 export interface ShipmentStartDate {
-  type: string;
+  interface: string;
 }
 
 export interface AdditionalSection {
-  type: string;
+  interface: string;
   title: string;
   bodyHtml: string;
 }
@@ -190,7 +190,7 @@ export interface State {
 }
 
 export interface Variant {
-  type: string;
+  interface: string;
   id: string;
   offerId: string;
   shopId: string;
@@ -249,7 +249,7 @@ export interface Dimensions {
 export interface AttributesList {
   name: string;
   colorSwatch?: string;
-  type: string;
+  interface: string;
 }
 
 export interface Settings {
@@ -271,23 +271,23 @@ export interface UnitPrice {
 export interface ColorAttribute {
   name: string;
   colorSwatch: string;
-  type: string;
+  interface: string;
 }
 
 export interface SizeAttribute {
   name: string;
-  type: string;
+  interface: string;
 }
 
 export interface ColorOption {
   name: string;
   colorSwatch: string;
-  type: string;
+  interface: string;
 }
 
 export interface SizeOption {
   name: string;
-  type: string;
+  interface: string;
 }
 
 export interface Attributes {
@@ -303,7 +303,7 @@ export interface Options {
 }
 
 export interface Variant2 {
-  type: string;
+  interface: string;
   id: string;
   offerId: string;
   shopId: string;
@@ -362,7 +362,7 @@ export interface Dimensions2 {
 export interface AttributesList2 {
   name: string;
   colorSwatch?: string;
-  type: string;
+  interface: string;
 }
 
 export interface Settings2 {
@@ -387,7 +387,7 @@ export interface Tags2 {
 }
 
 export interface Tag2 {
-  type: string;
+  interface: string;
   name: string;
 }
 
@@ -403,23 +403,23 @@ export interface UnitPrice2 {
 export interface ColorAttribute2 {
   name: string;
   colorSwatch: string;
-  type: string;
+  interface: string;
 }
 
 export interface SizeAttribute2 {
   name: string;
-  type: string;
+  interface: string;
 }
 
 export interface ColorOption2 {
   name: string;
   colorSwatch: string;
-  type: string;
+  interface: string;
 }
 
 export interface SizeOption2 {
   name: string;
-  type: string;
+  interface: string;
 }
 
 export interface Attributes2 {
@@ -492,7 +492,7 @@ export interface Element {
   amount: Amount;
   rate: number;
   title: string;
-  taxType: string;
+  taxinterface: string;
 }
 
 export interface Amount {
@@ -565,7 +565,7 @@ export interface ShippingRate {
   service: string;
   description: string;
   price: Price6;
-  type: string;
+  interface: string;
 }
 
 export interface Price6 {
@@ -582,19 +582,19 @@ export interface Delivery {
 }
 
 export interface ManufacturingTime {
-  type: string;
+  interface: string;
   from: string;
   to: string;
 }
 
 export interface ShippingTime {
-  type: string;
+  interface: string;
   from: string;
   to: string;
 }
 
 export interface TotalDeliveryTime {
-  type: string;
+  interface: string;
   from: string;
   to: string;
 }

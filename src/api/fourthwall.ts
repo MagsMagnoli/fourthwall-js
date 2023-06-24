@@ -1,8 +1,9 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosInstance } from "axios";
 import { wrapper } from "axios-cookiejar-support";
 import { CookieJar } from "tough-cookie";
 import { OrdersResponse } from "../types/orders";
 import { login } from "./login";
+import { get } from "./requests";
 
 const baseUrl = "https://api.fourthwall.com/api/";
 
@@ -16,6 +17,8 @@ export class Fourthwall {
       axios.create({
         withCredentials: true,
         jar,
+        maxRedirects: 0,
+        validateStatus: (status) => status >= 200 && status < 303,
       })
     );
   }
@@ -46,7 +49,7 @@ export class Fourthwall {
     filterOutGiveawayGifts?: boolean;
     page?: number;
     size?: number;
-  }): Promise<OrdersResponse> {
+  } = {}): Promise<OrdersResponse> {
     const response = await get<OrdersResponse>({
       client: this.client,
       headers: this.headers,
@@ -54,53 +57,5 @@ export class Fourthwall {
     });
 
     return response.data;
-  }
-}
-
-export async function post<T, U>({
-  client,
-  url,
-  data,
-  headers,
-}: {
-  client: AxiosInstance;
-  url: string;
-  data: U;
-  headers?: Record<string, string>;
-}): Promise<AxiosResponse<T>> {
-  try {
-    return await client.post<T>(url, data, { headers });
-  } catch (err) {
-    const axiosError = err as AxiosError;
-    if (axiosError && axiosError.response) {
-      throw new Error(
-        `Request failed with status code ${axiosError.response.status}`
-      );
-    } else {
-      throw new Error("Request failed");
-    }
-  }
-}
-
-export async function get<T>({
-  client,
-  url,
-  headers,
-}: {
-  client: AxiosInstance;
-  url: string;
-  headers?: Record<string, string>;
-}): Promise<AxiosResponse<T>> {
-  try {
-    return await client.get<T>(url, { headers });
-  } catch (err) {
-    const axiosError = err as AxiosError;
-    if (axiosError && axiosError.response) {
-      throw new Error(
-        `Request failed with status code ${axiosError.response.status}`
-      );
-    } else {
-      throw new Error("Request failed");
-    }
   }
 }
