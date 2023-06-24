@@ -1,6 +1,6 @@
-# FourthWall npm package
+# Fourthwall npm package
 
-This is an npm package for interacting with the FourthWall platform. It is written in typescript.
+This is an npm package for interacting with the Fourthwall platform. It is written in typescript.
 
 ## Installation
 
@@ -12,7 +12,7 @@ npm install @magsmagnoli/fourthwall-js
 
 ## Usage
 
-This package simplifies interaction with FourthWall's API and token validation process. Below is an example of how you can use this package:
+This package simplifies interaction with Fourthwall's API and token validation process. Below is an example of how you can use this package:
 
 ```typescript
 const fourthwall = new Fourthwall();
