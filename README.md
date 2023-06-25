@@ -7,7 +7,7 @@ This is an npm package for interacting with the Fourthwall platform. It is writt
 To install the package, use the following command:
 
 ```bash
-npm install @magsmagnoli/fourthwall-js
+npm install fourthwall-js
 ```
 
 ## Usage
