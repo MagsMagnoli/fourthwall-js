@@ -11,6 +11,7 @@ import {
 import { OrdersResponse } from "../types/orders";
 import { login } from "./login";
 import { get } from "./requests";
+import { OffersResponse } from "../types/offers";
 
 const baseUrl = "https://api.fourthwall.com/api/";
 
@@ -135,6 +136,39 @@ export class Fourthwall {
       client: this.client,
       headers: this.headers,
       url: `${baseUrl}giveaway-contribution`,
+    });
+
+    return response.data;
+  }
+
+  /**
+   * Fetch offers from the Fourthwall API, with optional filtering, searching, and pagination.
+   * @async
+   * @param {Object} param0 - Options for the request.
+   * @param {string} param0.q - The search query.
+   * @param {number} param0.page - The page number for pagination.
+   * @param {number} param0.size - The number of items per page.
+   * @param {("PUBLIC" | "HIDDEN")[]} param0.status - The status of offers to include.
+   * @return {Promise<OffersResponse>} Returns a promise that resolves with the data from the API.
+   * @throws {Error} Will throw an error if the request fails.
+   */
+  async getOffers({
+    q,
+    page = 0,
+    size = 25,
+    status = ["PUBLIC", "HIDDEN"],
+  }: {
+    q?: string;
+    page?: number;
+    size?: number;
+    status?: ("PUBLIC" | "HIDDEN")[];
+  }): Promise<OffersResponse> {
+    const response = await get<OffersResponse>({
+      client: this.client,
+      headers: this.headers,
+      url: `${baseUrl}offers?q=${q}&page=${page}&size=${size}&status=${status.join(
+        "&status="
+      )}`,
     });
 
     return response.data;
