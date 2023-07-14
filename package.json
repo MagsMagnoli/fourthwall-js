@@ -1,6 +1,6 @@
 {
   "name": "fourthwall-js",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A typescript Fourthwall API client",
   "homepage": "https://github.com/MagsMagnoli/fourthwall-js#readme",
   "repository": {

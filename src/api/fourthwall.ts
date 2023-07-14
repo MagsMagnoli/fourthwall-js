@@ -12,6 +12,7 @@ import { OrdersResponse } from "../types/orders";
 import { login } from "./login";
 import { get } from "./requests";
 import { OffersResponse } from "../types/offers";
+import { OfferAnalyticsResponse } from "../types/offerAnalytics";
 
 const baseUrl = "https://api.fourthwall.com/api/";
 
@@ -169,6 +170,28 @@ export class Fourthwall {
       url: `${baseUrl}offers?q=${q}&page=${page}&size=${size}&status=${status.join(
         "&status="
       )}`,
+    });
+
+    return response.data;
+  }
+
+  /**
+   * Fetches analytics for the given offer IDs from the API.
+   * @async
+   * @param {Object} param0 - Options for the request.
+   * @param {string[]} param0.ids - An array of offer IDs for which to fetch analytics.
+   * @return {Promise<OfferAnalyticsResponse>} Returns a promise that resolves with the analytics data from the API.
+   * @throws {Error} Will throw an error if the request fails, for example due to network issues or if the server returns an error status.
+   */
+  async getOfferAnalytics({
+    ids,
+  }: {
+    ids: string[];
+  }): Promise<OfferAnalyticsResponse> {
+    const response = await get<OfferAnalyticsResponse>({
+      client: this.client,
+      headers: this.headers,
+      url: `${baseUrl}orders/analytics/offers?ids=${ids.join("&ids=")}`,
     });
 
     return response.data;
