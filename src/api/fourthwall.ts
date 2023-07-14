@@ -164,12 +164,22 @@ export class Fourthwall {
     size?: number;
     status?: ("PUBLIC" | "HIDDEN")[];
   }): Promise<OffersResponse> {
+    const url = new URL(`${baseUrl}offers`);
+    url.searchParams.append("page", page.toString());
+    url.searchParams.append("size", size.toString());
+
+    if (q) {
+      url.searchParams.append("q", q);
+    }
+
+    for (const s of status) {
+      url.searchParams.append("status", s);
+    }
+
     const response = await get<OffersResponse>({
       client: this.client,
       headers: this.headers,
-      url: `${baseUrl}offers?q=${q}&page=${page}&size=${size}&status=${status.join(
-        "&status="
-      )}`,
+      url: url.toString(),
     });
 
     return response.data;
@@ -188,10 +198,15 @@ export class Fourthwall {
   }: {
     ids: string[];
   }): Promise<OfferAnalyticsResponse> {
+    const url = new URL(`${baseUrl}orders/analytics/offers`);
+    for (const id of ids) {
+      url.searchParams.append("ids", id);
+    }
+
     const response = await get<OfferAnalyticsResponse>({
       client: this.client,
       headers: this.headers,
-      url: `${baseUrl}orders/analytics/offers?ids=${ids.join("&ids=")}`,
+      url: url.toString(),
     });
 
     return response.data;
