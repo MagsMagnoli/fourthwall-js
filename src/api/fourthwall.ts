@@ -8,11 +8,12 @@ import {
   Shop,
   ShopsResponse,
 } from "../types";
+import { OfferAnalyticsResponse } from "../types/offerAnalytics";
+import { OffersResponse } from "../types/offers";
 import { OrdersResponse } from "../types/orders";
+import { TiersResponse } from "../types/tiers";
 import { login } from "./login";
 import { get } from "./requests";
-import { OffersResponse } from "../types/offers";
-import { OfferAnalyticsResponse } from "../types/offerAnalytics";
 
 const baseUrl = "https://api.fourthwall.com/api/";
 
@@ -235,6 +236,24 @@ export class Fourthwall {
       client: this.client,
       headers: this.headers,
       url: `${baseUrl}orders?filterOutGiveawayGifts=${filterOutGiveawayGifts}&page=${page}&size=${size}`,
+    });
+
+    return response.data;
+  }
+
+  /**
+   * Fetch tiers from the Fourthwall API for a specific shop.
+   * @async
+   * @param {Object} param0 - Options for the request.
+   * @param {string} param0.shopName - The name of the shop to fetch tiers for.
+   * @return {Promise<TiersResponse>} Returns a promise that resolves with the data from the API.
+   * @throws {Error} Will throw an error if the request fails.
+   */
+  async getTiers({ shopName }: { shopName: string }): Promise<TiersResponse> {
+    const response = await get<TiersResponse>({
+      client: this.client,
+      headers: this.headers,
+      url: `https://${shopName}.fourthwall.com/creators/api/v1/tiers`,
     });
 
     return response.data;
