@@ -6,15 +6,6 @@ export interface OffersResponse extends Pagination {
 
 type ID = string;
 
-interface Page {
-  pageNumber: number;
-  pageSize: number;
-  elementsSize: number;
-  elementsTotal: number;
-  totalPages: number;
-  hasNextPage: boolean;
-}
-
 interface Tag {
   type: string;
   name: string;
@@ -156,7 +147,7 @@ interface Variant {
   productId: null | string;
   strikethroughPrice: null | ValueCurrencyPair;
   barcode: null | string;
-  cost: ValueCurrencyPair;
+  cost: ValueCurrencyPair | null;
 }
 
 interface Offer {
