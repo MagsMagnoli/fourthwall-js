@@ -224,18 +224,32 @@ export class Fourthwall {
    * @throws {Error} Will throw an error if the request fails.
    */
   async getOrders({
+    q,
     filterOutGiveawayGifts = true,
     page = 0,
     size = 25,
   }: {
+    q?: string;
     filterOutGiveawayGifts?: boolean;
     page?: number;
     size?: number;
   } = {}): Promise<OrdersResponse> {
+    const url = new URL(`${baseUrl}orders`);
+    url.searchParams.append("page", page.toString());
+    url.searchParams.append("size", size.toString());
+    url.searchParams.append(
+      "filterOutGiveawayGifts",
+      filterOutGiveawayGifts.toString()
+    );
+
+    if (q) {
+      url.searchParams.append("q", q);
+    }
+
     const response = await get<OrdersResponse>({
       client: this.client,
       headers: this.headers,
-      url: `${baseUrl}orders?filterOutGiveawayGifts=${filterOutGiveawayGifts}&page=${page}&size=${size}`,
+      url: url.toString(),
     });
 
     return response.data;
