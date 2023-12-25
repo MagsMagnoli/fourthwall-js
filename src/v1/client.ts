@@ -30,7 +30,7 @@ export class Fourthwall {
   }: {
     page?: number;
     size?: number;
-  }): Promise<GetOrdersResponse> {
+  } = {}): Promise<GetOrdersResponse> {
     const url = new URL(`${this.baseUrl}order`);
     url.searchParams.append("page", page.toString());
     url.searchParams.append("size", size.toString());
