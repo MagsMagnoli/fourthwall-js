@@ -13,7 +13,7 @@
   "scripts": {
     "build": "rm -rf dist && tsup ./src/v0/index.ts ./src/v1/index.ts --format cjs,esm --dts --minify --clean --sourcemap",
     "lint": "eslint 'src/**/*.{js,ts}'",
-    "prepublishOnly": "npm ci && npm run build",
+    "prepublishOnly": "pnpm i && pnpm run build",
     "start": "ts-node src/index.ts",
     "test": "jest"
   },
