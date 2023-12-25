@@ -10,21 +10,19 @@ To install the package, use the following command:
 npm install fourthwall-js
 ```
 
-## Usage
+## Usage - 0.7.0+
 
 This package simplifies interaction with Fourthwall's API and token validation process. Below is an example of how you can use this package:
 
 ```typescript
-const fourthwall = new Fourthwall();
-
-// Login
-await fourthwall.login({
+// Init client
+const fw = new Fourthwall({
   username: "username",
   password: "password",
 });
 
 // Get orders
-const ordersResponse = await fourthwall.getOrders();
+const ordersResponse = await fw.getOrders();
 ```
 
 ## Contributing

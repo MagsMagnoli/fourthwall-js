@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { load } from "cheerio";
-import { LoginPayload, TokenRequest, TokenResponse } from "../types/login";
+import { LoginPayload, TokenRequest, TokenResponse } from "./types/login";
 import { get, post } from "./requests";
 
 const loginUrl =

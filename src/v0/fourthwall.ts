@@ -7,11 +7,11 @@ import {
   GiveawayContributionResponse,
   Shop,
   ShopsResponse,
-} from "../types";
-import { OfferAnalyticsResponse } from "../types/offerAnalytics";
-import { OffersResponse } from "../types/offers";
-import { OrdersResponse } from "../types/orders";
-import { TiersResponse } from "../types/tiers";
+} from "./types";
+import { OfferAnalyticsResponse } from "./types/offerAnalytics";
+import { OffersResponse } from "./types/offers";
+import { OrdersResponse } from "./types/orders";
+import { TiersResponse } from "./types/tiers";
 import { login } from "./login";
 import { get } from "./requests";
 
